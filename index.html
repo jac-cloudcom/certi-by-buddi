@@ -245,7 +245,7 @@
         position: relative;
       }
 
-      .hero { min-height: auto; padding: 40px 0 20px; }
+      .hero { min-height: auto; padding: 40px 0 320px; }
 
       .container.hero-grid {
         gap: 0;
@@ -1284,15 +1284,17 @@
       .header-cta { height: 44px; }
 
       .hero-content {
-        display: flex;
-        flex-direction: column;
+        position: relative;
       }
 
       .promise-bar {
+        position: absolute;
+        top: 560px;
+        left: 0;
+        right: 0;
         grid-template-columns: 1fr;
         gap: 12px;
-        margin-top: 32px;
-        order: 999;
+        margin: 0;
       }
       .promise-item { min-height: 100px; padding: 16px; }
       .promise-item svg { width: 22px; height: 22px; margin-bottom: 10px; }
