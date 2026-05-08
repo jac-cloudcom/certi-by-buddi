@@ -3,12 +3,6 @@
   "version": 2,
   "buildCommand": "echo 'Static HTML - no build needed'",
   "public": true,
-  "env": {
-    "GA_ID": {
-      "description": "Google Analytics ID (e.g., G-XXXXXXXXXX)",
-      "required": false
-    }
-  },
   "headers": [
     {
       "source": "/(.*)\\.(js|css|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot)$",
