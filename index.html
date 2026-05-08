@@ -230,26 +230,13 @@
     }
 
     @media (max-width: 760px) {
-      .hero {
-        display: block;
-      }
-
-      .container {
-        display: block;
-      }
-
       .hero-grid {
-        display: flex;
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
         gap: 0;
       }
 
-      .hero-content {
-        order: 1;
-      }
-
       .hero-grid .hero-visual {
-        order: 2;
         margin-top: 24px;
         display: flex;
         align-items: flex-start;
@@ -259,8 +246,7 @@
       }
 
       .promise-bar {
-        order: 3;
-        margin-top: 0 !important;
+        display: none;
       }
 
       .hero { min-height: auto; padding: 40px 0 40px; }
