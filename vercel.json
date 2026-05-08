@@ -1,8 +1,9 @@
 {
   "name": "CERTI Landing",
   "version": 2,
-  "buildCommand": "echo 'Static HTML - no build needed'",
   "public": true,
+  "buildCommand": "true",
+  "outputDirectory": ".",
   "headers": [
     {
       "source": "/(.*)\\.(js|css|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot)$",
