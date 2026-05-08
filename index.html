@@ -230,13 +230,26 @@
     }
 
     @media (max-width: 760px) {
+      .hero {
+        display: block;
+      }
+
+      .container {
+        display: block;
+      }
+
       .hero-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        display: flex;
+        flex-direction: column;
         gap: 0;
       }
 
+      .hero-content {
+        order: 1;
+      }
+
       .hero-grid .hero-visual {
+        order: 2;
         margin-top: 24px;
         display: flex;
         align-items: flex-start;
@@ -245,11 +258,12 @@
         position: relative;
       }
 
-      .hero { min-height: auto; padding: 40px 0 40px; }
-
-      .container.hero-grid {
-        gap: 0;
+      .promise-bar {
+        order: 3;
+        margin-top: 0 !important;
       }
+
+      .hero { min-height: auto; padding: 40px 0 40px; }
     }
 
     .eyebrow {
