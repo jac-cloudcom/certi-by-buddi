@@ -863,6 +863,92 @@
     .cta-box p { color: rgba(255,255,255,.74); max-width: 650px; margin-top: 22px; font-size: 18px; line-height: 1.65; }
     .cta-box .btn-primary { background: #fff; color: var(--charcoal); margin-top: 32px; box-shadow: none; }
 
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(31, 41, 48, .7);
+      animation: fadeIn .3s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 28px;
+      padding: 40px;
+      max-width: 500px;
+      width: calc(100% - 40px);
+      box-shadow: 0 30px 90px rgba(31, 41, 48, .28);
+      animation: slideUp .3s ease;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: var(--steel);
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .25s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--charcoal);
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .modal-content p {
+      color: var(--slate);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 760px) {
+      .modal-content {
+        padding: 28px;
+      }
+    }
+
     /* Form Styles */
     .form-container {
       background: rgba(255,255,255,.65);
@@ -1370,50 +1456,54 @@
             <div class="kicker" style="color:rgba(255,255,255,.62);">Pilot program</div>
             <h2>Launch your first verified product drop.</h2>
             <p>CERTI is opening early access for selected brands and clubs who want to test QR verification, product passports, scan analytics, and collectible loyalty campaigns.</p>
-
-            <!-- Working Pilot Form -->
-            <div class="form-container">
-              <h3>Apply for CERTI Pilot</h3>
-              <p>Join the early access program and launch your first verified product drop.</p>
-              <form id="pilot-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-                <div class="form-group">
-                  <label for="brand-name">Brand / Company Name *</label>
-                  <input type="text" id="brand-name" name="brand_name" required aria-label="Brand or company name">
-                </div>
-                <div class="form-group">
-                  <label for="contact-name">Contact Name *</label>
-                  <input type="text" id="contact-name" name="contact_name" required aria-label="Your full name">
-                </div>
-                <div class="form-group">
-                  <label for="email">Email Address *</label>
-                  <input type="email" id="email" name="email" required aria-label="Your email address">
-                </div>
-                <div class="form-group">
-                  <label for="phone">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" aria-label="Your phone number">
-                </div>
-                <div class="form-group">
-                  <label for="products">Number of Products *</label>
-                  <select id="products" name="products" required aria-label="Number of products to verify">
-                    <option value="">Select...</option>
-                    <option value="1-5">1-5 SKUs</option>
-                    <option value="5-25">5-25 SKUs</option>
-                    <option value="25-100">25-100 SKUs</option>
-                    <option value="100+">100+ SKUs</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="message">Tell us about your brand *</label>
-                  <textarea id="message" name="message" required aria-label="Tell us about your brand and goals"></textarea>
-                </div>
-                <button type="submit" class="form-submit">Apply for Pilot →</button>
-                <div id="form-message" class="form-message"></div>
-              </form>
-            </div>
+            <button class="btn btn-primary" id="open-pilot-form" style="background: #fff; color: var(--charcoal); margin-top: 32px; box-shadow: none;">Apply for Pilot →</button>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Pilot Form Modal -->
+    <div id="pilot-modal" class="modal">
+      <div class="modal-content">
+        <button class="modal-close" id="close-pilot-form" aria-label="Close form">×</button>
+        <h3>Apply for CERTI Pilot</h3>
+        <p>Join the early access program and launch your first verified product drop.</p>
+        <form id="pilot-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <div class="form-group">
+            <label for="brand-name">Brand / Company Name *</label>
+            <input type="text" id="brand-name" name="brand_name" required aria-label="Brand or company name">
+          </div>
+          <div class="form-group">
+            <label for="contact-name">Contact Name *</label>
+            <input type="text" id="contact-name" name="contact_name" required aria-label="Your full name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required aria-label="Your email address">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" aria-label="Your phone number">
+          </div>
+          <div class="form-group">
+            <label for="products">Number of Products *</label>
+            <select id="products" name="products" required aria-label="Number of products to verify">
+              <option value="">Select...</option>
+              <option value="1-5">1-5 SKUs</option>
+              <option value="5-25">5-25 SKUs</option>
+              <option value="25-100">25-100 SKUs</option>
+              <option value="100+">100+ SKUs</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your brand *</label>
+            <textarea id="message" name="message" required aria-label="Tell us about your brand and goals"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Apply for Pilot →</button>
+          <div id="form-message" class="form-message"></div>
+        </form>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -1447,6 +1537,36 @@
 
     document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
 
+    // Modal Handling
+    const modal = document.getElementById('pilot-modal');
+    const openBtn = document.getElementById('open-pilot-form');
+    const closeBtn = document.getElementById('close-pilot-form');
+
+    openBtn?.addEventListener('click', () => {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
     // Form Handling
     const form = document.getElementById('pilot-form');
     const formMessage = document.getElementById('form-message');
@@ -1471,6 +1591,10 @@
             formMessage.classList.add('success');
             formMessage.classList.remove('error');
             form.reset();
+            setTimeout(() => {
+              modal.classList.remove('active');
+              document.body.style.overflow = 'auto';
+            }, 2000);
           } else {
             throw new Error('Form submission failed');
           }
